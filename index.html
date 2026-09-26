@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="SkyCast — a beautiful live weather dashboard powered by wttr.in">
+<meta name="description" content="SkyCast — a beautiful live weather dashboard powered by wttr.in and IQAir">
 <title>SkyCast — Weather</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -37,6 +37,16 @@
   <article class="card stat"><span class="icon">🌧️</span><span>Precipitation</span><b id="precip">-- mm</b><small>Current amount</small></article>
 </div>
 
+<article class="card air-card">
+  <div class="section-head"><div><div class="eyebrow">AIR QUALITY</div><h2>IQAir</h2></div><span id="airSource">Awaiting key</span></div>
+  <div id="airContent" class="air-content">
+    <div class="air-value"><strong id="aqiValue">—</strong><span id="aqiLabel">AQI</span></div>
+    <div class="air-details"><div><span>PM2.5</span><b id="pm25">—</b></div><div><span>Main pollutant</span><b id="mainPollutant">—</b></div><div><span>Station</span><b id="airStation">—</b></div></div>
+  </div>
+  <div class="api-key-row"><input id="iqairKey" type="password" placeholder="Paste free IQAir API key" autocomplete="off"><button id="saveIqairKey">Save key</button></div>
+  <small class="api-note">Your key is stored only in this browser's local storage.</small>
+</article>
+
 <article class="card hourly">
   <div class="section-head"><div><div class="eyebrow">NEXT HOURS</div><h2>Hourly forecast</h2></div><span id="hourlyTimezone">Local time</span></div>
   <div id="hourlyForecast" class="hourly-grid"></div>
@@ -57,7 +67,7 @@
 </article>
 </section>
 
-<footer><span>Weather data by <a href="https://wttr.in/" target="_blank" rel="noreferrer">wttr.in</a></span><span>Vanilla HTML · CSS · JavaScript</span></footer>
+<footer><span>Weather: <a href="https://wttr.in/" target="_blank" rel="noreferrer">wttr.in</a> · Air quality: <a href="https://www.iqair.com/" target="_blank" rel="noreferrer">IQAir</a></span><span>Vanilla HTML · CSS · JavaScript</span></footer>
 </main>
 <script src="script.js"></script>
 </body></html>
