@@ -1,1 +1,63 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Beautiful weather dashboard powered by Open-Meteo"><title>SkyCast — Weather</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body><div class="ambient a1"></div><div class="ambient a2"></div><main class="shell"><header class="topbar"><div class="brand"><div class="mark">☼</div><div><div class="name">SkyCast</div><div class="tag">Live weather, beautifully simple.</div></div></div><button id="unitToggle" class="unit">°C</button></header><section class="search-row"><form id="searchForm" class="search"><span>⌕</span><input id="cityInput" type="search" placeholder="Search for a city..." autocomplete="off" required><button>Search</button></form><button id="locationBtn" class="location">⌖ Use my location</button></section><div id="status" class="status"></div><section id="dashboard" class="dashboard hidden"><article class="hero card"><div class="hero-top"><div><div id="dateLabel" class="eyebrow"></div><h1 id="locationLabel">—</h1></div><div id="conditionIcon" class="hero-icon">☀️</div></div><div class="temp"><span id="temperature">--</span><sup id="temperatureUnit">°C</sup></div><div id="conditionLabel" class="condition">—</div><div class="feels">Feels like <b id="feelsLike">--</b></div><div class="hero-meta"><div><span>High</span><b id="highTemp">--</b></div><div><span>Low</span><b id="lowTemp">--</b></div><div><span>Rain</span><b id="rainChance">--%</b></div></div></article><div class="stats"><article class="card stat"><span class="icon">💧</span><span>Humidity</span><b id="humidity">--%</b><small>Relative humidity</small></article><article class="card stat"><span class="icon">💨</span><span>Wind</span><b id="wind">-- km/h</b><small>Current speed</small></article><article class="card stat"><span class="icon">☁️</span><span>Cloud cover</span><b id="clouds">--%</b><small>Sky coverage</small></article><article class="card stat"><span class="icon">🌧️</span><span>Precipitation</span><b id="precip">-- mm</b><small>Current amount</small></article></div><article class="card forecast"><div class="section-head"><div><div class="eyebrow">LOOK AHEAD</div><h2>7-day forecast</h2></div><span id="timezoneLabel">Local time</span></div><div id="forecast" class="forecast-grid"></div></article></section><footer><span>Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">Open-Meteo</a></span><span>Vanilla HTML · CSS · JavaScript</span></footer></main><script src="script.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="SkyCast — a beautiful live weather dashboard powered by Open-Meteo">
+<title>SkyCast — Weather</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="ambient a1"></div><div class="ambient a2"></div>
+<main class="shell">
+<header class="topbar">
+  <div class="brand"><div class="mark">☼</div><div><div class="name">SkyCast</div><div class="tag">Live weather, beautifully simple.</div></div></div>
+  <button id="unitToggle" class="unit">°C</button>
+</header>
+<section class="search-row">
+  <form id="searchForm" class="search"><span>⌕</span><input id="cityInput" type="search" placeholder="Search for a city..." autocomplete="off" required><button>Search</button></form>
+  <button id="locationBtn" class="location">⌖ Use my location</button>
+</section>
+<div id="status" class="status"></div>
+
+<section id="dashboard" class="dashboard hidden">
+<article class="hero card">
+  <div class="hero-top"><div><div id="dateLabel" class="eyebrow"></div><h1 id="locationLabel">—</h1></div><div id="conditionIcon" class="hero-icon">☀️</div></div>
+  <div class="temp"><span id="temperature">--</span><sup id="temperatureUnit">°C</sup></div>
+  <div id="conditionLabel" class="condition">—</div><div class="feels">Feels like <b id="feelsLike">--</b></div>
+  <div class="hero-meta"><div><span>High</span><b id="highTemp">--</b></div><div><span>Low</span><b id="lowTemp">--</b></div><div><span>Rain</span><b id="rainChance">--%</b></div></div>
+</article>
+
+<div class="stats">
+  <article class="card stat"><span class="icon">💧</span><span>Humidity</span><b id="humidity">--%</b><small>Relative humidity</small></article>
+  <article class="card stat"><span class="icon">💨</span><span>Wind</span><b id="wind">-- km/h</b><small>Current speed</small></article>
+  <article class="card stat"><span class="icon">☁️</span><span>Cloud cover</span><b id="clouds">--%</b><small>Sky coverage</small></article>
+  <article class="card stat"><span class="icon">🌧️</span><span>Precipitation</span><b id="precip">-- mm</b><small>Current amount</small></article>
+</div>
+
+<article class="card hourly">
+  <div class="section-head"><div><div class="eyebrow">NEXT HOURS</div><h2>Hourly forecast</h2></div><span id="hourlyTimezone">Local time</span></div>
+  <div id="hourlyForecast" class="hourly-grid"></div>
+</article>
+
+<article class="card sun-card">
+  <div class="section-head"><div><div class="eyebrow">DAYLIGHT</div><h2>Sun & conditions</h2></div></div>
+  <div class="sun-grid">
+    <div><span class="sun-icon">🌅</span><span>Sunrise</span><b id="sunrise">--:--</b></div>
+    <div><span class="sun-icon">🌇</span><span>Sunset</span><b id="sunset">--:--</b></div>
+    <div><span class="sun-icon">☀️</span><span>UV index</span><b id="uv">--</b></div>
+  </div>
+</article>
+
+<article class="card forecast">
+  <div class="section-head"><div><div class="eyebrow">LOOK AHEAD</div><h2>7-day forecast</h2></div><span id="timezoneLabel">Local time</span></div>
+  <div id="forecast" class="forecast-grid"></div>
+</article>
+</section>
+
+<footer><span>Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">Open-Meteo</a></span><span>Vanilla HTML · CSS · JavaScript</span></footer>
+</main>
+<script src="script.js"></script>
+</body></html>
