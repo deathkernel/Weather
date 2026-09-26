@@ -1,6 +1,6 @@
 # SkyCast 🌦️
 
-A modern responsive weather dashboard powered by the public Open-Meteo API.
+A modern responsive weather dashboard using public weather APIs with no API key.
 
 ## Features
 
@@ -8,21 +8,23 @@ A modern responsive weather dashboard powered by the public Open-Meteo API.
 - Live current temperature and feels-like temperature
 - Weather condition and visual icon
 - Humidity, wind, cloud cover, precipitation
-- 7-day forecast with rain probability
+- 3-day forecast with rain probability
+- Hourly forecast
+- Sunrise, sunset and UV index
 - Celsius / Fahrenheit toggle
 - Browser "Use my location" support
 - Responsive glass-style UI
-- No API key required for non-commercial Open-Meteo usage
+- No weather API key required
 
 ## Run
 
 Open `index.html` directly, or use a local web server such as VS Code Live Server.
 
-## API
+## APIs
 
-SkyCast uses Open-Meteo's Geocoding API to convert a city name into coordinates, then its Forecast API for current and daily weather data. Open-Meteo documents JSON HTTP GET endpoints and no authentication requirement for non-commercial use.
+SkyCast uses Open-Meteo's public Geocoding API to convert a city name into coordinates. Weather data comes from the public wttr.in JSON API (`format=j1`), which provides current conditions, hourly data and a three-day forecast.
 
-Weather data attribution is provided in the app footer.
+The weather service is public and does not require an API key. Use reasonable request rates.
 
 ## Files
 
@@ -31,3 +33,8 @@ index.html   UI structure
 style.css    responsive visual design
 script.js    API integration and dashboard logic
 ```
+
+## Data attribution
+
+Weather data: wttr.in  
+Location search: Open-Meteo Geocoding API
